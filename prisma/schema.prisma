@@ -12,3 +12,31 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id               String       @id @default(uuid())
+  name             String       @db.VarChar(255)
+  username         String       @unique @db.VarChar(255)
+  email            String       @unique @db.VarChar(255)
+  password         String       @db.VarChar(255)
+  confirm_password String       @db.VarChar(255)
+  user_points      UserPoints[]
+  high_scores      Game[]
+}
+
+model Game {
+  id                    String       @id @default(uuid())
+  name                  String       @db.VarChar(255)
+  highest_score_user    User         @relation(fields: [highest_score_user_id], references: [id])
+  highest_score_user_id String
+  user_points           UserPoints[]
+}
+
+model UserPoints {
+  id      String @id @default(uuid())
+  user    User   @relation(fields: [user_id], references: [id])
+  user_id String
+  game    Game   @relation(fields: [game_id], references: [id])
+  game_id String
+  points  Int    @db.Integer()
+}
