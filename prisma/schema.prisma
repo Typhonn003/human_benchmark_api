@@ -19,7 +19,7 @@ model User {
   username         String       @unique @db.VarChar(255)
   email            String       @unique @db.VarChar(255)
   password         String       @db.VarChar(255)
-  confirm_password String       @db.VarChar(255)
+  active           Boolean      @default(true)
   user_points      UserPoints[]
   high_scores      Game[]
 }
