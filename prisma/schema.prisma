@@ -21,15 +21,12 @@ model User {
   password         String       @db.VarChar(255)
   active           Boolean      @default(true)
   user_points      UserPoints[]
-  high_scores      Game[]
 }
 
 model Game {
   id                    String       @id @default(uuid())
   name                  String       @db.VarChar(255)
-  highest_score_user    User         @relation(fields: [highest_score_user_id], references: [id])
-  highest_score_user_id String
-  user_points           UserPoints[]
+  user_points      UserPoints[]
 }
 
 model UserPoints {
