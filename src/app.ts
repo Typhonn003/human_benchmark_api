@@ -2,7 +2,8 @@ import "express-async-errors";
 import "reflect-metadata";
 
 import express, { Application } from "express";
-import { gameRouter, userRouter } from "./domains";
+import { userRouter } from "./domains/users";
+import { gameRouter } from "./domains/games";
 import { handleErrors } from "./errors";
 
 const app: Application = express();
