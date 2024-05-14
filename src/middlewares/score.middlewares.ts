@@ -3,7 +3,7 @@ import prisma from "../server";
 import { AppError } from "../errors";
 
 class ScoreMiddleware {
-  static gameExists = async (
+  static scoreExists = async (
     req: Request,
     res: Response,
     next: NextFunction
