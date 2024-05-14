@@ -10,14 +10,14 @@ scoreRouter.post(
   Validators.bodyIsValid(SScoreRequest),
   ScoreController.register
 );
-scoreRouter.get("/:id", ScoreMiddleware.gameExists, ScoreController.getById);
+scoreRouter.get("/:id", ScoreMiddleware.scoreExists, ScoreController.getById);
 scoreRouter.get("", ScoreController.getAll);
 scoreRouter.patch(
   "/:id",
-  ScoreMiddleware.gameExists,
+  ScoreMiddleware.scoreExists,
   Validators.bodyIsValid(SScoreUpdate),
   ScoreController.update
 );
-scoreRouter.delete("/:id", ScoreMiddleware.gameExists, ScoreController.delete);
+scoreRouter.delete("/:id", ScoreMiddleware.scoreExists, ScoreController.delete);
 
 export { scoreRouter };
