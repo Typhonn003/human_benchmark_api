@@ -3,21 +3,21 @@ import { Validators, ScoreMiddleware } from "../../middlewares";
 import { SScoreRequest, SScoreUpdate } from "../../schemas";
 import ScoreController from "./score.controller";
 
-const gameRouter: Router = Router();
+const scoreRouter: Router = Router();
 
-gameRouter.post(
+scoreRouter.post(
   "",
   Validators.bodyIsValid(SScoreRequest),
   ScoreController.register
 );
-gameRouter.get("/:id", ScoreMiddleware.gameExists, ScoreController.getById);
-gameRouter.get("", ScoreController.getAll);
-gameRouter.patch(
+scoreRouter.get("/:id", ScoreMiddleware.gameExists, ScoreController.getById);
+scoreRouter.get("", ScoreController.getAll);
+scoreRouter.patch(
   "/:id",
   ScoreMiddleware.gameExists,
   Validators.bodyIsValid(SScoreUpdate),
   ScoreController.update
 );
-gameRouter.delete("/:id", ScoreMiddleware.gameExists, ScoreController.delete);
+scoreRouter.delete("/:id", ScoreMiddleware.gameExists, ScoreController.delete);
 
-export { gameRouter };
+export { scoreRouter };
