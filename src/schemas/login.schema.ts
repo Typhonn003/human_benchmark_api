@@ -7,7 +7,6 @@ const SLoginRequest = z.object({
 
 const SLoginResponse = z.object({
   token: z.string(),
-  id: z.string(),
 });
 
 type TLoginRequest = z.infer<typeof SLoginRequest>;
