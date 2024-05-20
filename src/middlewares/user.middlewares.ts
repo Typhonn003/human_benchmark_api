@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import prisma from "../server";
 import { AppError } from "../errors";
+import UserService from "../domains/users/user.services";
 
 class UserMiddleware {
   static usernameIsUnique = async (
@@ -65,6 +66,14 @@ class UserMiddleware {
     }
 
     return next();
+  };
+
+  static retrieveUserByToken = async (req: Request, res: Response) => {
+    const userId: string = res.locals.userId;
+
+    const user = await UserService.getById(userId);
+
+    return res.json(user);
   };
 }
 

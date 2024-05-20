@@ -12,8 +12,14 @@ userRouter.post(
   UserMiddleware.emailIsUnique,
   UserController.register
 );
+userRouter.get(
+  "/profile",
+  Validators.tokenIsValid,
+  UserMiddleware.retrieveUserByToken
+);
 userRouter.get("/:id", UserMiddleware.userExists, UserController.getById);
 userRouter.get("", UserController.getAll);
+
 userRouter.patch(
   "/:id",
   UserMiddleware.userExists,
