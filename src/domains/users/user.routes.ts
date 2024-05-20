@@ -23,11 +23,19 @@ userRouter.get("", UserController.getAll);
 userRouter.patch(
   "/:id",
   UserMiddleware.userExists,
+  Validators.tokenIsValid,
+  Validators.isOwnerOrAdmin,
   Validators.bodyIsValid(SUserUpdate),
   UserMiddleware.usernameIsUnique,
   UserMiddleware.emailIsUnique,
   UserController.update
 );
-userRouter.delete("/:id", UserMiddleware.userExists, UserController.deactivate);
+userRouter.delete(
+  "/:id",
+  UserMiddleware.userExists,
+  Validators.tokenIsValid,
+  Validators.isOwnerOrAdmin,
+  UserController.deactivate
+);
 
 export { userRouter };

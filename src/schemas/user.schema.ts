@@ -10,11 +10,13 @@ const SUser = z.object({
     .string()
     .max(100)
     .transform((password) => hashSync(password, 10)),
+  role: z.enum(["user", "admin"]),
   active: z.boolean(),
 });
 
 const SUserRequest = SUser.omit({
   id: true,
+  role: true,
   active: true,
 });
 
@@ -22,7 +24,6 @@ const SUserResponse = SUser.omit({
   password: true,
 });
 
-// Adicionar mais tarde o user_points/high_scores no partial
 const SUserUpdate = SUserRequest.partial();
 
 type TUser = z.infer<typeof SUser>;

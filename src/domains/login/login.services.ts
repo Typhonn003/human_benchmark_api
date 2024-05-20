@@ -25,10 +25,14 @@ class LoginService {
       throw new AppError("Invalid credentials", 403);
     }
 
-    const token = jwt.sign({ userId: user.id }, process.env.SECRET_KEY!, {
-      expiresIn: process.env.EXPIRES_IN!,
-      subject: "null",
-    });
+    const token = jwt.sign(
+      { userId: user.id, role: user.role },
+      process.env.SECRET_KEY!,
+      {
+        expiresIn: process.env.EXPIRES_IN!,
+        subject: "null",
+      }
+    );
 
     return {
       token,
