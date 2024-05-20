@@ -51,6 +51,16 @@ class Validators {
 
     return next();
   };
+
+  static isAdmin = (req: Request, res: Response, next: NextFunction) => {
+    const role: string = res.locals.role;
+
+    if (role !== "admin") {
+      throw new AppError("Unauthorized", 401);
+    }
+
+    return next();
+  };
 }
 
 export { Validators };
