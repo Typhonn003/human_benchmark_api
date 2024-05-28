@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { SGame } from "./game.schema";
 
 const SScore = z.object({
   id: z.string(),
@@ -10,6 +11,8 @@ const SScore = z.object({
 const SScoreRequest = SScore.omit({ id: true });
 
 const SScoreResponse = SScore;
+
+const SScoreResponseGame = SScore.extend({ game: SGame });
 
 const SScoreUpdate = SScoreRequest.partial();
 
@@ -23,6 +26,7 @@ export {
   SScoreRequest,
   SScoreResponse,
   SScoreUpdate,
+  SScoreResponseGame,
   TScore,
   TScoreRequest,
   TScoreResponse,

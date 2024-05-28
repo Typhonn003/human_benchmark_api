@@ -1,5 +1,6 @@
 import { hashSync } from "bcrypt";
 import { z } from "zod";
+import { SScoreResponse, SScoreResponseGame } from "./score.schema";
 
 const SUser = z.object({
   id: z.string(),
@@ -24,6 +25,10 @@ const SUserResponse = SUser.omit({
   password: true,
 });
 
+const SUserResponseScore = SUserResponse.extend({
+  user_points: z.array(SScoreResponseGame),
+});
+
 const SUserUpdate = SUserRequest.partial();
 
 type TUser = z.infer<typeof SUser>;
@@ -36,6 +41,7 @@ export {
   SUserRequest,
   SUserResponse,
   SUserUpdate,
+  SUserResponseScore,
   TUser,
   TUserRequest,
   TUserResponse,

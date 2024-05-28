@@ -71,7 +71,7 @@ class UserMiddleware {
   static retrieveUserByToken = async (req: Request, res: Response) => {
     const userId: string = res.locals.userId;
 
-    const user = await UserService.getById(userId);
+    const user = await UserService.getByIdScore(userId);
 
     return res.json(user);
   };
