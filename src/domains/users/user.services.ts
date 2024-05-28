@@ -1,6 +1,7 @@
 import prisma from "../../server";
 import {
   SUserResponse,
+  SUserResponseScore,
   TUserRequest,
   TUserResponse,
   TUserUpdate,
@@ -44,6 +45,15 @@ class UserService {
       where: { id },
     });
     return this.validateAndTransformUser(user);
+  };
+
+  static getByIdScore = async (id: string): Promise<TUserResponse> => {
+    const user = await prisma.user.findUniqueOrThrow({
+      where: { id },
+      include: { user_points: { include: { game: true } } },
+    });
+    //console.log(user.user_points);
+    return SUserResponseScore.parse(user);
   };
 
   static update = async (
