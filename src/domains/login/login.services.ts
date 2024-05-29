@@ -15,6 +15,10 @@ class LoginService {
       },
     });
 
+    if (user?.active == false) {
+      throw new AppError("Your account is disabled", 403);
+    }
+
     if (!user) {
       throw new AppError("Invalid credentials", 403);
     }
