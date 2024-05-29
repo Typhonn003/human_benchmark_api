@@ -52,7 +52,6 @@ class UserService {
       where: { id },
       include: { user_points: { include: { game: true } } },
     });
-    //console.log(user.user_points);
     return SUserResponseScore.parse(user);
   };
 

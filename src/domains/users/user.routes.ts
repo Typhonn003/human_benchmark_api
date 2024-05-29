@@ -8,7 +8,6 @@ const userRouter: Router = Router();
 userRouter.post(
   "",
   Validators.bodyIsValid(SUserRequest),
-  UserMiddleware.usernameIsUnique,
   UserMiddleware.emailIsUnique,
   UserController.register
 );
@@ -26,8 +25,6 @@ userRouter.patch(
   Validators.tokenIsValid,
   Validators.isOwnerOrAdmin,
   Validators.bodyIsValid(SUserUpdate),
-  UserMiddleware.usernameIsUnique,
-  UserMiddleware.emailIsUnique,
   UserController.update
 );
 userRouter.delete(
