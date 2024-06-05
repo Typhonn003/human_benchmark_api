@@ -4,28 +4,6 @@ import { AppError } from "../errors";
 import UserService from "../domains/users/user.services";
 
 class UserMiddleware {
-  static nameIsUnique = async (
-    req: Request,
-    res: Response,
-    next: NextFunction
-  ) => {
-    const { name } = req.body;
-
-    if (name) {
-      const user = await prisma.user.findFirst({
-        where: {
-          name,
-        },
-      });
-
-      if (user) {
-        throw new AppError("Name already exists", 409);
-      }
-    }
-
-    return next();
-  };
-
   static emailIsUnique = async (
     req: Request,
     res: Response,
