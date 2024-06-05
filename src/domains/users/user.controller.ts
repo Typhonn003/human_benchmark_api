@@ -29,6 +29,7 @@ class UserController {
 
     res.status(200).json(updatedUser);
   };
+
   static deactivate = async (req: Request, res: Response) => {
     const userId = req.params.id;
     await UserService.deactivate(userId);
