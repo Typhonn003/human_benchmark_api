@@ -8,7 +8,6 @@ const scoreRouter: Router = Router();
 scoreRouter.post(
   "",
   Validators.tokenIsValid,
-  Validators.isAdmin,
   Validators.bodyIsValid(SScoreRequest),
   ScoreController.register
 );
