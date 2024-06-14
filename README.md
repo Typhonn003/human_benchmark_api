@@ -1,5 +1,7 @@
 ## Instalar dependências:
 
+Entre no arquivo **.env.example** copie a estrutura e crie seu próprio arquivo **.env** com suas variáveis locais para que a aplicação possa funcionar corretamente.
+
 ```bash
 # caso use npm
 npm install
@@ -37,6 +39,8 @@ npm run dev
 | DELETE      | Delete score     | `/score/:id`     | Authenticated           | Admin         |
 
 O arquivo do ambiente Insomia pronto pode ser encontrado [aqui!](/InsomniaSchema.json)
+
+Obs: verifique se as variáveis de ambiente estarão com a **PORT** correta!
 
 ## Diagrama do Der:
 
