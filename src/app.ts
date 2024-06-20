@@ -8,7 +8,7 @@ import cors from "cors";
 
 const app: Application = express();
 
-const whiteList = ["http://localhost:3000", "http://127.0.0.1:3000"];
+const whiteList = ["http://localhost:3000", "http://127.0.0.1:3000", "https://humanbenchmark.sambacore.com"];
 
 const corsOptions = {
   origin(origin: string | undefined, cb: Function) {
